@@ -1,0 +1,65 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "plugins": ["react-hooks"],
+  "extends": [
+    "standard-react",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": ["JSXAttribute", "JSXSpreadAttribute"]
+      }
+    ],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "lines-between-class-members": [1, "always"],
+    "quotes": [1, "double"],
+    "semi": ["error", "always"],
+    "space-before-blocks": "error",
+    "space-infix-ops": "error",
+    "space-unary-ops": [
+      2,
+      {
+        "words": true,
+        "nonwords": false
+      }
+    ],
+    "arrow-parens": ["error", "always"],
+    "array-bracket-newline": ["error", "consistent"],
+    "react/jsx-first-prop-new-line": [1, "multiline"],
+    "react/jsx-indent": [2, 2],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-boolean-value": [0],
+    "react/sort-comp": [
+      2,
+      {
+        "order": [
+          "static-methods",
+          "instance-variables",
+          "lifecycle",
+          "everything-else",
+          "render"
+        ]
+      }
+    ]
+  }
+}
