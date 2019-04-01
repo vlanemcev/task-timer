@@ -34,7 +34,7 @@ class Timer extends Component {
       this.setState({
         time: Date.now() - this.state.startTime
       });
-    }, 1000);
+    }, 100);
   };
 
   pauseTimer = () => {
@@ -89,7 +89,9 @@ class Timer extends Component {
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
-          <div className={styles.timerWrap}>{formatTime(time)}</div>
+          <div className={styles.timerWrap}>
+            {formatTime(time, false, true)}
+          </div>
         </Grid>
         <Grid item xs={12}>
           {timerOn ? (
