@@ -3,7 +3,7 @@ export default (theme) => ({
     textAlign: "center"
   },
   taskNameInput: {
-    width: "250px",
+    width: "270px",
     color: "#3e50c7",
     fontWeight: "500",
     textAlign: "center"
