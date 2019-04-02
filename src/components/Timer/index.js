@@ -52,21 +52,27 @@ class Timer extends Component {
 
   stopTimer = () => {
     const { time, startTime } = this.state;
-    const { onTimerStop, afterStopAction } = this.props;
+    const { onTimerStop, shouldTimerContinue } = this.props;
 
     this.pauseTimer();
 
     if (typeof onTimerStop === "function") {
+      /* define a timer management method that will be passed to the parent handler,
+      so that it can call it after its actions */
+      let timerMethodToPass = shouldTimerContinue
+        ? this.resumeTimer
+        : this.resetTimer;
+
       onTimerStop(
         {
           id: this.timerID,
           startTime,
           endTime: time + startTime
         },
-        this[`${afterStopAction}Timer`]
+        timerMethodToPass
       );
     } else {
-      this[`${afterStopAction}Timer`]();
+      this.resetTimer();
     }
   };
 
@@ -84,7 +90,6 @@ class Timer extends Component {
 
   render() {
     const { time, timerOn, isPause, isResumed } = this.state;
-    const { stopBtnText } = this.props;
 
     return (
       <Grid container spacing={16}>
@@ -103,7 +108,7 @@ class Timer extends Component {
                     color={"secondary"}
                     onClick={this.stopTimer}
                   >
-                    {stopBtnText}
+                    Stop
                   </Button>
                 </Grid>
                 <Grid item>
@@ -118,7 +123,7 @@ class Timer extends Component {
                 color={"secondary"}
                 onClick={this.stopTimer}
               >
-                {stopBtnText}
+                Stop
               </Button>
             )
           ) : isPause ? (
@@ -129,7 +134,7 @@ class Timer extends Component {
                   color={"secondary"}
                   onClick={this.stopTimer}
                 >
-                  {stopBtnText}
+                  Stop
                 </Button>
               </Grid>
               <Grid item>
@@ -158,14 +163,12 @@ class Timer extends Component {
 }
 
 Timer.propTypes = {
-  stopBtnText: PropTypes.string,
   onTimerStop: PropTypes.func,
-  afterStopAction: PropTypes.oneOf(["resume", "reset", "pause"])
+  shouldTimerContinue: PropTypes.bool
 };
 
 Timer.defaultProps = {
-  stopBtnText: "Stop",
-  afterStopAction: "reset"
+  shouldTimerContinue: false
 };
 
 export default Timer;
