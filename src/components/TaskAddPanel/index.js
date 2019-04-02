@@ -16,7 +16,7 @@ class TaskAddPanel extends Component {
 
     this.state = {
       taskName: "",
-      showTaskNameError: false
+      isShowErrorDialog: false
     };
   }
 
@@ -28,20 +28,20 @@ class TaskAddPanel extends Component {
 
   handleCloseErrorDialog = () => {
     this.setState({
-      showTaskNameError: false
+      isShowErrorDialog: false
     });
   };
 
-  handleStopTimer = (params, afterStopCall) => {
+  handleStopTimer = (params, timerControlMethod) => {
     const { taskName } = this.state;
     const { onAddTask } = this.props;
 
     if (!taskName) {
       this.setState({
-        showTaskNameError: true
+        isShowErrorDialog: true
       });
     } else {
-      afterStopCall();
+      timerControlMethod();
 
       onAddTask({
         name: taskName,
@@ -55,7 +55,7 @@ class TaskAddPanel extends Component {
   };
 
   render() {
-    const { taskName, showTaskNameError } = this.state;
+    const { taskName, isShowErrorDialog } = this.state;
     const { classes } = this.props;
 
     return (
@@ -69,7 +69,7 @@ class TaskAddPanel extends Component {
           />
           <ErrorDialog
             id={"task-name-error"}
-            open={showTaskNameError}
+            open={isShowErrorDialog}
             title={"Empty task name"}
             onClose={this.handleCloseErrorDialog}
           >
@@ -78,7 +78,7 @@ class TaskAddPanel extends Component {
           </ErrorDialog>
         </Grid>
         <Grid item xs={12} classes={{ item: classes.timerWrap }}>
-          <Timer onTimerStop={this.handleStopTimer} stopBtnText={"Add task"} />
+          <Timer onTimerStop={this.handleStopTimer} />
         </Grid>
       </Grid>
     );
