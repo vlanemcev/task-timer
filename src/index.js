@@ -13,7 +13,7 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router basename="/task-timer">
       <App />
     </Router>
   </Provider>,
