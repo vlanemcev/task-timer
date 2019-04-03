@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { formatTime } from "helpers/index";
+import { formatTime } from "helpers";
 
 import { withStyles } from "@material-ui/core";
 import Table from "@material-ui/core/Table";

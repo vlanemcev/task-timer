@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import ErrorDialog from "../ErrorDialog/index";
-import Timer from "../Timer/index";
+import ErrorDialog from "components/ErrorDialog/index";
+import Timer from "components/Timer/index";
 
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";

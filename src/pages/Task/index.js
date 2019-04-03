@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { formatTime } from "helpers/index.js";
+import { formatTime } from "helpers";
 
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
