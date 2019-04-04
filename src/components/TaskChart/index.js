@@ -44,6 +44,6 @@ TaskChart.propTypes = {
 
 export default connect((state) => {
   return {
-    tasks: state.tasks
+    tasks: state.tasks.items
   };
 })(TaskChart);
