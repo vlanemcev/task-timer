@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Switch, Route } from "react-router";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { addTask, deleteTask } from "domain/task";
+import { loadSavedTasks, addTask, deleteTask } from "domain/task";
+import { saveTimerDataInLS, resetTimerDataInLS } from "domain/timer";
 
 import TaskAddPanel from "components/TaskAddPanel/index";
 import TaskList from "components/TaskList/index";
@@ -19,20 +20,38 @@ import Tab from "@material-ui/core/Tab";
 import styles from "./styles";
 
 class Home extends Component {
+  componentDidMount() {
+    this.props.loadSavedTasks();
+  }
+
   handleChangeTab = (e, value) => {
     const { history } = this.props;
     history.push(value);
   };
 
   render() {
-    const { location, tasks, classes, addTask, deleteTask } = this.props;
+    const {
+      location,
+      startTimerDate,
+      tasks,
+      classes,
+      saveTimerDataInLS,
+      resetTimerDataInLS,
+      addTask,
+      deleteTask
+    } = this.props;
 
     return (
       <div className={classes.layout}>
         <Paper>
           <Grid container spacing={32} justify={"center"}>
             <Grid item xs={12}>
-              <TaskAddPanel onAddTask={addTask} />
+              <TaskAddPanel
+                startTimerDate={startTimerDate}
+                onFirstStartTasksTimer={saveTimerDataInLS}
+                onEndTasksTimer={resetTimerDataInLS}
+                onAddTask={addTask}
+              />
             </Grid>
             <Grid item xs={12} classes={{ item: classes.taskListWrap }}>
               <AppBar position={"static"}>
@@ -77,8 +96,12 @@ class Home extends Component {
 Home.propTypes = {
   history: PropTypes.object,
   location: PropTypes.object,
+  startTimerDate: PropTypes.number,
   tasks: PropTypes.array.isRequired,
   classes: PropTypes.object,
+  saveTimerDataInLS: PropTypes.func.isRequired,
+  resetTimerDataInLS: PropTypes.func.isRequired,
+  loadSavedTasks: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired
 };
@@ -87,10 +110,17 @@ export default compose(
   connect(
     (state) => {
       return {
-        tasks: state.tasks
+        startTimerDate: state.timer.startTime,
+        tasks: state.tasks.items
       };
     },
-    { addTask, deleteTask }
+    {
+      saveTimerDataInLS,
+      resetTimerDataInLS,
+      loadSavedTasks,
+      addTask,
+      deleteTask
+    }
   ),
   withStyles(styles)
 )(Home);

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { loadSavedTasks } from "domain/task";
 import { formatTime } from "helpers";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -15,6 +16,10 @@ import Button from "@material-ui/core/Button";
 import styles from "./styles";
 
 class Task extends Component {
+  componentDidMount() {
+    this.props.loadSavedTasks();
+  }
+
   render() {
     const { match, task, classes } = this.props;
 
@@ -98,18 +103,24 @@ class Task extends Component {
 Task.propTypes = {
   match: PropTypes.object,
   classes: PropTypes.object,
+  loadSavedTasks: PropTypes.func.isRequired,
   task: PropTypes.object.isRequired
 };
 
 export default compose(
-  connect((state, ownProps) => {
-    return {
-      task: state.tasks.reduce((prev, task) => {
-        return +ownProps.match.params["id"] === task.id
-          ? { ...prev, ...task }
-          : prev;
-      }, {})
-    };
-  }),
+  connect(
+    (state, ownProps) => {
+      return {
+        task: state.tasks.items.reduce((prev, task) => {
+          return +ownProps.match.params["id"] === task.id
+            ? { ...prev, ...task }
+            : prev;
+        }, {})
+      };
+    },
+    {
+      loadSavedTasks
+    }
+  ),
   withStyles(styles)
 )(Task);
