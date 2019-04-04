@@ -32,9 +32,15 @@ class TaskAddPanel extends Component {
     });
   };
 
+  handleFirstStartTimer = (params) => {
+    const { onFirstStartTasksTimer } = this.props;
+
+    onFirstStartTasksTimer(params.startTime);
+  };
+
   handleStopTimer = (params, timerControlMethod) => {
     const { taskName } = this.state;
-    const { onAddTask } = this.props;
+    const { onAddTask, onEndTasksTimer } = this.props;
 
     if (!taskName) {
       this.setState({
@@ -42,6 +48,7 @@ class TaskAddPanel extends Component {
       });
     } else {
       timerControlMethod();
+      onEndTasksTimer();
 
       onAddTask({
         name: taskName,
@@ -56,7 +63,7 @@ class TaskAddPanel extends Component {
 
   render() {
     const { taskName, isShowErrorDialog } = this.state;
-    const { classes } = this.props;
+    const { startTimerDate, classes } = this.props;
 
     return (
       <Grid container spacing={24}>
@@ -78,7 +85,11 @@ class TaskAddPanel extends Component {
           </ErrorDialog>
         </Grid>
         <Grid item xs={12} classes={{ item: classes.timerWrap }}>
-          <Timer onTimerStop={this.handleStopTimer} />
+          <Timer
+            startTime={startTimerDate}
+            onTimerFirstStart={this.handleFirstStartTimer}
+            onTimerStop={this.handleStopTimer}
+          />
         </Grid>
       </Grid>
     );
@@ -86,7 +97,10 @@ class TaskAddPanel extends Component {
 }
 
 TaskAddPanel.propTypes = {
+  startTimerDate: PropTypes.number,
+  onFirstStartTasksTimer: PropTypes.func.isRequired,
   onAddTask: PropTypes.func.isRequired,
+  onEndTasksTimer: PropTypes.func.isRequired,
   classes: PropTypes.object
 };
 

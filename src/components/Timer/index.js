@@ -22,19 +22,50 @@ class Timer extends Component {
     this.timerID = null;
   }
 
-  startTimer = (resumed) => {
-    this.setState({
-      timerOn: true,
-      isResumed: !!resumed,
-      startTime: Date.now() - this.state.time,
-      time: this.state.time
-    });
+  componentDidMount() {
+    const { startTime } = this.props;
 
+    if (startTime !== 0) {
+      this.startTimerWithStartDate(startTime);
+    }
+  }
+
+  runTimer = () => {
     this.timerID = setInterval(() => {
       this.setState({
         time: Date.now() - this.state.startTime
       });
     }, 100);
+  };
+
+  startTimerWithStartDate = (startTime) => {
+    this.setState({
+      timerOn: true,
+      isResumed: false,
+      startTime: startTime
+    });
+
+    this.runTimer();
+  };
+
+  startTimer = (resumed) => {
+    const { onTimerFirstStart } = this.props;
+
+    this.setState({
+      timerOn: true,
+      isResumed: !!resumed,
+      startTime: Date.now() - this.state.time
+    });
+
+    this.runTimer();
+
+    if (resumed === false) {
+      if (typeof onTimerFirstStart === "function") {
+        onTimerFirstStart({
+          startTime: Date.now()
+        });
+      }
+    }
   };
 
   pauseTimer = () => {
@@ -65,7 +96,7 @@ class Timer extends Component {
 
       onTimerStop(
         {
-          id: this.timerID,
+          id: Date.now(),
           startTime,
           endTime: time + startTime
         },
@@ -163,11 +194,14 @@ class Timer extends Component {
 }
 
 Timer.propTypes = {
+  startTime: PropTypes.number,
+  onTimerFirstStart: PropTypes.func,
   onTimerStop: PropTypes.func,
   shouldTimerContinue: PropTypes.bool
 };
 
 Timer.defaultProps = {
+  startTime: 0,
   shouldTimerContinue: false
 };
 
