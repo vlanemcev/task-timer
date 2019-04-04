@@ -32,10 +32,6 @@ export function* watchRequestSavedTimerData() {
   yield takeEvery(LOAD_TIMER_DATA + POSTFIX.request, loadTimerFromLS);
 }
 
-export function* watchSaveTimerData() {
-  yield takeEvery(SET_TIMER, setTimerDataInLS);
-}
-
-export function* watchResetTimer() {
-  yield takeEvery(RESET_TIMER, setTimerDataInLS);
+export function* watchTimersSaga() {
+  yield takeEvery([SET_TIMER, RESET_TIMER], setTimerDataInLS);
 }

@@ -34,18 +34,9 @@ export function* watchRequestSavedTasks() {
   yield takeEvery(LOAD_TASKS + POSTFIX.request, loadTasksFromLS);
 }
 
-export function* watchSaveTask() {
-  yield takeEvery(ADD_TASK, setTasksInLS);
-}
-
-export function* watchSaveGeneratedTasks() {
-  yield takeEvery(ADD_TASKS, setTasksInLS);
-}
-
-export function* watchDeleteTask() {
-  yield takeEvery(DELETE_TASK, setTasksInLS);
-}
-
-export function* watchDeleteTasks() {
-  yield takeEvery(DELETE_ALL_TASKS, setTasksInLS);
+export function* watchTasksSaga() {
+  yield takeEvery(
+    [ADD_TASK, ADD_TASKS, DELETE_TASK, DELETE_ALL_TASKS],
+    setTasksInLS
+  );
 }
