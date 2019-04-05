@@ -63,12 +63,10 @@ export const reducer = {
         };
 
       case ADD_TASKS:
-        return payload.tasks.map((item) => {
-          return {
-            ...state,
-            items: [...state.items, ...item]
-          };
-        });
+        return {
+          ...state,
+          items: [...state.items, ...payload.items]
+        };
 
       case DELETE_TASK:
         return {

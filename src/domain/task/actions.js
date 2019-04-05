@@ -36,7 +36,7 @@ export const addTask = (payload) => {
 export const addTasks = (payload) => {
   return {
     type: ADD_TASKS,
-    items: [...payload]
+    items: payload
   };
 };
 
