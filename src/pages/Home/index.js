@@ -10,7 +10,11 @@ import { connect } from "react-redux";
 
 // action creators for tasks and timer
 import { loadSavedTasks, addTask, deleteTask } from "domain/task";
-import { saveTimerDataInLS, resetTimerDataInLS } from "domain/timer";
+import {
+  loadSavedTimerData,
+  saveTimerDataInLS,
+  resetTimerDataInLS
+} from "domain/timer";
 
 // application components
 import TaskAddPanel from "components/TaskAddPanel";
@@ -29,6 +33,7 @@ import styles from "./styles";
 
 class Home extends Component {
   componentDidMount() {
+    this.props.loadSavedTimerData();
     this.props.loadSavedTasks();
   }
 
@@ -55,6 +60,7 @@ class Home extends Component {
           <Grid container spacing={32} justify="center">
             <Grid item xs={12}>
               <TaskAddPanel
+                key={startTimerDate}
                 startTimerDate={startTimerDate}
                 onFirstStartTasksTimer={saveTimerDataInLS}
                 onEndTasksTimer={resetTimerDataInLS}
@@ -103,6 +109,7 @@ Home.propTypes = {
   startTimerDate: PropTypes.number,
   tasks: PropTypes.array.isRequired,
   classes: PropTypes.object,
+  loadSavedTimerData: PropTypes.func.isRequired,
   saveTimerDataInLS: PropTypes.func.isRequired,
   resetTimerDataInLS: PropTypes.func.isRequired,
   loadSavedTasks: PropTypes.func.isRequired,
@@ -119,6 +126,7 @@ export default compose(
       };
     },
     {
+      loadSavedTimerData,
       saveTimerDataInLS,
       resetTimerDataInLS,
       loadSavedTasks,

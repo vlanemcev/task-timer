@@ -126,8 +126,8 @@ export const generateTasks = () => {
 
   timeIntervals.forEach((interval, i) => {
     generatedTasksArray.push({
-      id: i,
-      name: `generated task ${i}`,
+      id: i + 1,
+      name: `generated task ${i + 1}`,
       startTime: interval.startTime,
       endTime: interval.endTime,
       spendTime: interval.endTime - interval.startTime

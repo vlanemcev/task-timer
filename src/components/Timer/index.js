@@ -33,6 +33,10 @@ class Timer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
   runTimer = () => {
     this.timerID = setInterval(() => {
       this.setState((state) => ({ time: Date.now() - state.startTime }));

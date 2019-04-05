@@ -4,8 +4,13 @@ import { all } from "redux-saga/effects";
 import { watchRequestSavedTasks, watchTasksSaga } from "domain/task";
 
 // import timer sagas
-import { watchTimersSaga } from "domain/timer";
+import { watchRequestSavedTimerData, watchTimersSaga } from "domain/timer";
 
 export default function* rootSaga() {
-  yield all([watchRequestSavedTasks(), watchTasksSaga(), watchTimersSaga()]);
+  yield all([
+    watchRequestSavedTimerData(),
+    watchRequestSavedTasks(),
+    watchTasksSaga(),
+    watchTimersSaga()
+  ]);
 }

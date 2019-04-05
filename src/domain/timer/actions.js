@@ -13,7 +13,7 @@ export const loadSavedTimerData = () => {
 export const loadSavedTimerDataSuccess = (payload) => {
   return {
     type: LOAD_TIMER_DATA + POSTFIX.success,
-    ...payload
+    startTime: payload
   };
 };
 
