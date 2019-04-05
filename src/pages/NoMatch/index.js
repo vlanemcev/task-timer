@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+
+// react-router components
 import { Link } from "react-router-dom";
 
+// material UI
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -15,21 +18,21 @@ const NoMatch = (props) => {
   return (
     <div className={classes.layout}>
       <Paper>
-        <Grid container spacing={24} justify={"center"}>
+        <Grid container spacing={24} justify="center">
           <Grid item xs={12}>
-            <Typography align={"center"} color={"textPrimary"} variant={"h5"}>
+            <Typography align="center" color="textPrimary" variant="h5">
               {location.state && location.state.errorText
                 ? location.state.errorText
                 : `No matches for this location: ${location.pathname}`}
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography align={"center"}>
+            <Typography align="center">
               <Button
-                color={"primary"}
-                variant={"contained"}
+                color="primary"
+                variant="contained"
                 component={Link}
-                to={"/"}
+                to="/"
               >
                 Go to Home
               </Button>

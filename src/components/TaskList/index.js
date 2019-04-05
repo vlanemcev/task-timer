@@ -1,8 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+
+// react-router components
 import { Link } from "react-router-dom";
+
+// helpers
 import { formatTime } from "helpers";
 
+// material UI
 import { withStyles } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -55,7 +60,7 @@ const TaskList = (props) => {
                 </TableCell>
                 <TableCell classes={{ body: classes.bodyCell }}>
                   <Button
-                    variant={"contained"}
+                    variant="contained"
                     classes={{
                       contained: classes.btn,
                       label: classes.btnLabel
@@ -68,7 +73,7 @@ const TaskList = (props) => {
                 </TableCell>
                 <TableCell>
                   <Button
-                    variant={"contained"}
+                    variant="contained"
                     classes={{
                       contained: classes.btn,
                       label: classes.btnLabel
@@ -84,7 +89,7 @@ const TaskList = (props) => {
             <TableRow className={classes.bodyRow}>
               <TableCell
                 colSpan={7}
-                align={"center"}
+                align="center"
                 classes={{ body: classes.noTaskCell }}
               >
                 No tasks for show

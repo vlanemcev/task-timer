@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+
+// react-router components
 import { Switch, Route, Redirect } from "react-router";
 
-import Home from "pages/Home/index";
-import Task from "pages/Task/index";
-import NoMatch from "pages/NoMatch/index";
+// application pages
+import Home from "pages/Home";
+import Task from "pages/Task";
+import NoMatch from "pages/NoMatch";
 
+// material UI
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -17,10 +21,10 @@ class App extends Component {
         <CssBaseline />
 
         <Switch>
-          <Route exact path={"/"} render={() => <Redirect to={"/tasks"} />} />
-          <Route exact path={"/tasks/:id"} component={Task} />
-          <Route exact path={"/tasks"} component={Home} />
-          <Route exact path={"/chart"} component={Home} />
+          <Route exact path="/" render={() => <Redirect to="/tasks" />} />
+          <Route exact path="/tasks/:id" component={Task} />
+          <Route exact path="/tasks" component={Home} />
+          <Route exact path="/chart" component={Home} />
           <Route component={NoMatch} />
         </Switch>
       </React.Fragment>

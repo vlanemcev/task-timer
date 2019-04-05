@@ -1,9 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
+// redux
 import { Provider } from "react-redux";
+
+// react-router components
 import { BrowserRouter as Router } from "react-router-dom";
+
+// function to configure store
 import configureStore from "./domain/store";
-import App from "./pages/App/index";
+
+// application main page
+import App from "./pages/App";
 
 import "./index.css";
 

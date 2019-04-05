@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import ErrorDialog from "components/ErrorDialog/index";
-import Timer from "components/Timer/index";
+// application components
+import ErrorDialog from "components/ErrorDialog";
+import Timer from "components/Timer";
 
+// material UI
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
@@ -71,13 +73,13 @@ class TaskAddPanel extends Component {
           <Input
             value={taskName}
             onChange={this.handleChangeTaskName}
-            placeholder={"Name of your Task"}
+            placeholder="Name of your Task"
             classes={{ input: classes.taskNameInput }}
           />
           <ErrorDialog
-            id={"task-name-error"}
-            open={isShowErrorDialog}
-            title={"Empty task name"}
+            id="task-name-error"
+            isOpen={isShowErrorDialog}
+            title="Empty task name"
             onClose={this.handleCloseErrorDialog}
           >
             You are trying close your task without name, enter the title and try

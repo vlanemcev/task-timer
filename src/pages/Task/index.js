@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+// react-router components
+import { Link } from "react-router-dom";
+
+// redux
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+
+// action creators for tasks
 import { loadSavedTasks } from "domain/task";
+
+// helpers
 import { formatTime } from "helpers";
 
+// material UI
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -31,8 +40,8 @@ class Task extends Component {
               <Grid
                 container
                 spacing={32}
-                alignItems={"baseline"}
-                justify={"center"}
+                alignItems="baseline"
+                justify="center"
               >
                 <Grid item xs={6}>
                   <Typography variant="h4" align="left">
@@ -46,7 +55,7 @@ class Task extends Component {
                 </Grid>
               </Grid>
               <Divider className={classes.divider} />
-              <Grid container spacing={32} justify={"center"}>
+              <Grid container spacing={32} justify="center">
                 <Grid item xs={6}>
                   <Typography variant="subtitle1">Task start time</Typography>
                 </Grid>
@@ -56,7 +65,7 @@ class Task extends Component {
                   </Typography>
                 </Grid>
               </Grid>
-              <Grid container spacing={32} justify={"center"}>
+              <Grid container spacing={32} justify="center">
                 <Grid item xs={6}>
                   <Typography variant="subtitle1">Task end time</Typography>
                 </Grid>
@@ -66,7 +75,7 @@ class Task extends Component {
                   </Typography>
                 </Grid>
               </Grid>
-              <Grid container spacing={32} justify={"center"}>
+              <Grid container spacing={32} justify="center">
                 <Grid item xs={6}>
                   <Typography variant="subtitle1">Spend Time</Typography>
                 </Grid>
@@ -85,12 +94,7 @@ class Task extends Component {
             </Typography>
           )}
           <div className={classes.homeBtn}>
-            <Button
-              variant={"contained"}
-              color={"primary"}
-              component={Link}
-              to={"/"}
-            >
+            <Button variant="contained" color="primary" component={Link} to="/">
               Go to Home
             </Button>
           </div>

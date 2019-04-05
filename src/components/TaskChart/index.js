@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+// redux
 import { connect } from "react-redux";
+
+// action creators for tasks
 import { deleteAllTasks, addTasks } from "domain/task";
+
+// helpers
 import { generateTasks, tasksHoursPartitioning } from "helpers";
 
+// rechart components
 import {
   ResponsiveContainer,
   BarChart,
@@ -11,8 +18,11 @@ import {
   Bar,
   XAxis,
   YAxis,
-  Legend
+  Legend,
+  Tooltip
 } from "recharts";
+
+// material UI
 import Button from "@material-ui/core/Button";
 
 class TaskChart extends Component {
@@ -38,17 +48,18 @@ class TaskChart extends Component {
             <XAxis dateKey="hour" />
             <YAxis />
             <Legend />
+            <Tooltip />
             <Bar
-              dataKey={"occupied"}
-              name={"Minutes in this hours"}
-              fill={"#8884d8"}
+              dataKey="occupied"
+              name="Minutes in this hours"
+              fill="#8884d8"
             />
           </BarChart>
         </ResponsiveContainer>
         <div style={{ textAlign: "right", padding: "10px 20px" }}>
           <Button
-            variant={"contained"}
-            color={"primary"}
+            variant="contained"
+            color="primary"
             onClick={this.handleGenerateTasks}
           >
             Generate tasks
