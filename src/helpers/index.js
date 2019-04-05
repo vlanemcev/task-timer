@@ -94,3 +94,45 @@ export const tasksHoursPartitioning = (tasks = []) => {
 export const getRandomInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+export const generateTasks = () => {
+  let generatedTasksArray = [];
+  let timeIntervals = [];
+
+  const numberOfTasks = getRandomInRange(10, 15);
+  const randomStartHour = getRandomInRange(0, 3);
+  const randomStartMin = getRandomInRange(1, 59);
+  const randomStartSec = getRandomInRange(1, 59);
+
+  let startTime = new Date().setHours(
+    randomStartHour,
+    randomStartMin,
+    randomStartSec
+  );
+
+  while (timeIntervals.length < numberOfTasks) {
+    let randomSpendTimeInMin = getRandomInRange(10, 90);
+    let endTime = startTime + randomSpendTimeInMin * 60 * 1000;
+
+    let pauseBetweenTasks = getRandomInRange(5, 15);
+
+    let nextStartTime = endTime + pauseBetweenTasks * 60 * 1000;
+
+    if (nextStartTime < new Date().setHours(23, 60, 0)) {
+      timeIntervals.push({ startTime, endTime });
+      startTime = nextStartTime;
+    }
+  }
+
+  timeIntervals.forEach((interval, i) => {
+    generatedTasksArray.push({
+      id: i,
+      name: `generated task ${i}`,
+      startTime: interval.startTime,
+      endTime: interval.endTime,
+      spendTime: interval.endTime - interval.startTime
+    });
+  });
+
+  return generatedTasksArray;
+};
