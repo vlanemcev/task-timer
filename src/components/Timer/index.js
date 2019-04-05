@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { formatTime } from "../../helpers";
 
+// helpers
+import { formatTime } from "helpers";
+
+// material UI
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
@@ -32,9 +35,7 @@ class Timer extends Component {
 
   runTimer = () => {
     this.timerID = setInterval(() => {
-      this.setState({
-        time: Date.now() - this.state.startTime
-      });
+      this.setState((state) => ({ time: Date.now() - state.startTime }));
     }, 100);
   };
 
@@ -51,11 +52,11 @@ class Timer extends Component {
   startTimer = (resumed) => {
     const { onTimerFirstStart } = this.props;
 
-    this.setState({
+    this.setState((state) => ({
       timerOn: true,
       isResumed: !!resumed,
-      startTime: Date.now() - this.state.time
-    });
+      startTime: Date.now() - state.time
+    }));
 
     this.runTimer();
 
@@ -132,18 +133,18 @@ class Timer extends Component {
         <Grid item xs={12}>
           {timerOn ? (
             isResumed ? (
-              <Grid container justify={"center"} spacing={16}>
+              <Grid container justify="center" spacing={16}>
                 <Grid item>
                   <Button
                     variant="contained"
-                    color={"secondary"}
+                    color="secondary"
                     onClick={this.stopTimer}
                   >
                     Stop
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant={"contained"} onClick={this.resetTimer}>
+                  <Button variant="contained" onClick={this.resetTimer}>
                     Reset timer
                   </Button>
                 </Grid>
@@ -151,18 +152,18 @@ class Timer extends Component {
             ) : (
               <Button
                 variant="contained"
-                color={"secondary"}
+                color="secondary"
                 onClick={this.stopTimer}
               >
                 Stop
               </Button>
             )
           ) : isPause ? (
-            <Grid container justify={"center"} spacing={16}>
+            <Grid container justify="center" spacing={16}>
               <Grid item>
                 <Button
-                  variant={"contained"}
-                  color={"secondary"}
+                  variant="contained"
+                  color="secondary"
                   onClick={this.stopTimer}
                 >
                   Stop
@@ -170,8 +171,8 @@ class Timer extends Component {
               </Grid>
               <Grid item>
                 <Button
-                  variant={"contained"}
-                  color={"primary"}
+                  variant="contained"
+                  color="primary"
                   onClick={this.resumeTimer}
                 >
                   Resume
@@ -180,8 +181,8 @@ class Timer extends Component {
             </Grid>
           ) : (
             <Button
-              variant={"contained"}
-              color={"primary"}
+              variant="contained"
+              color="primary"
               onClick={() => this.startTimer(false)}
             >
               Start
