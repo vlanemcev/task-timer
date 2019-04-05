@@ -28,6 +28,8 @@ export function* setTimerDataInLS() {
 }
 
 // sagas action watchers
+
+// this watcher is not used yet, the initial timer data is loaded immediately to the initial state
 export function* watchRequestSavedTimerData() {
   yield takeEvery(LOAD_TIMER_DATA + POSTFIX.request, loadTimerFromLS);
 }

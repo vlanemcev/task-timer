@@ -33,7 +33,7 @@ export const reducer = {
             isLoading: false,
             isFromLS: true
           },
-          items: payload.tasks.map((item) => ({ ...item }))
+          items: payload.tasks
         };
       }
 
@@ -48,18 +48,14 @@ export const reducer = {
         };
 
       case ADD_TASK:
+        const task = {
+          ...payload,
+          spendTime: payload.endTime - payload.startTime
+        };
+
         return {
           ...state,
-          items: [
-            ...state.items,
-            {
-              id: payload.id,
-              name: payload.name,
-              startTime: payload.startTime,
-              endTime: payload.endTime,
-              spendTime: payload.endTime - payload.startTime
-            }
-          ]
+          items: [...state.items, task]
         };
 
       case ADD_TASKS:
