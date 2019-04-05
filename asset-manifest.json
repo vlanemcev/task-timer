@@ -1,13 +1,13 @@
 {
   "main.css": "/task-timer/static/css/main.813d7c23.chunk.css",
-  "main.js": "/task-timer/static/js/main.36d5c272.chunk.js",
-  "main.js.map": "/task-timer/static/js/main.36d5c272.chunk.js.map",
+  "main.js": "/task-timer/static/js/main.49bc6be1.chunk.js",
+  "main.js.map": "/task-timer/static/js/main.49bc6be1.chunk.js.map",
   "runtime~main.js": "/task-timer/static/js/runtime~main.546b7746.js",
   "runtime~main.js.map": "/task-timer/static/js/runtime~main.546b7746.js.map",
-  "static/js/2.7b429b37.chunk.js": "/task-timer/static/js/2.7b429b37.chunk.js",
-  "static/js/2.7b429b37.chunk.js.map": "/task-timer/static/js/2.7b429b37.chunk.js.map",
+  "static/js/2.6a4b0dcc.chunk.js": "/task-timer/static/js/2.6a4b0dcc.chunk.js",
+  "static/js/2.6a4b0dcc.chunk.js.map": "/task-timer/static/js/2.6a4b0dcc.chunk.js.map",
   "index.html": "/task-timer/index.html",
-  "precache-manifest.8fb94529335098d2ebae76065ed191c2.js": "/task-timer/precache-manifest.8fb94529335098d2ebae76065ed191c2.js",
+  "precache-manifest.b231982a253af90c8aed94d08db93c5a.js": "/task-timer/precache-manifest.b231982a253af90c8aed94d08db93c5a.js",
   "service-worker.js": "/task-timer/service-worker.js",
   "static/css/main.813d7c23.chunk.css.map": "/task-timer/static/css/main.813d7c23.chunk.css.map"
 }
